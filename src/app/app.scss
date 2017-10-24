@@ -1,0 +1,24 @@
+@import '../assets/scss/general';
+
+
+.main-content {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  padding: 2rem .75rem;
+  background: #f9f9f9;
+  width: 100%;
+  margin: 0 auto;
+  app-card {
+    flex: 49%;
+    margin: 1rem 0;
+    max-width: 49%;
+  }
+  @media(max-width: 768px) {
+    width: auto;
+    padding: .75rem;
+  }
+}

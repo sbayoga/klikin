@@ -1,0 +1,74 @@
+<article class="card-component">
+  <aside class="photo-area">
+    <div [ngStyle]="{'background-image': 'url(' + getPhotoHeader() + ')'}"
+         class="header-photo-area"></div>
+    <i *ngIf="contentHasMoreThanTwoPhotos()"
+       (click)="selectNewThumbnailOnArrow('down')"
+       class=" fa arrow-left arrow fa-chevron-left"></i>
+    <i *ngIf="contentHasMoreThanTwoPhotos()"
+       (click)="selectNewThumbnailOnArrow('up')"
+       class=" fa arrow-right arrow fa-chevron-right"></i>
+    <footer *ngIf="contentHasPhotos()"
+            class="thumbnails-slider">
+      <ul class="thumbnails-slider-list">
+        <li *ngFor="let photo of getPhotos(); let i = index;"
+            class="thumbnails-slider-list-element">
+          <img [src]="photo['thumbnails'][size]"
+               alt="thumbnail"
+               (click)="selectNewThumbnail(i)"
+               [ngClass]="{'thumbnail-element-img': true, 'active': isThumbnailSelected(i)}"
+               title="image"/>
+        </li>
+      </ul>
+    </footer>
+  </aside>
+  <section class="body-card-component">
+
+    <header class="header-body-card">
+      <img [src]="getLogo()"/>
+      <h2>{{content['name']}}</h2>
+    </header>
+
+    <p class="description"
+       [innerHtml]="getDescription()"></p>
+
+    <article class="contact-area card-area">
+      <header class="card-title">
+        <h5>Información</h5>
+        <ul>
+          <li><a [href]="'mailto:' + getInfoContact('email')"
+                 target="_blank"><i class="fa fa-lg fa-envelope"></i></a>
+          </li>
+          <li><a [href]="'tel:' + getInfoContact('phone')"
+                 target="_blank"><i class="fa fa-lg fa-phone"></i></a>
+          </li>
+          <li><a [href]="getInfoContact('web')"
+                 target="_blank"><i class="fa fa-lg fa-external-link"></i></a>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <section>
+          <article>
+            <label>Dirección</label>
+            <p>{{getAddress()}}</p>
+          </article>
+          <article>
+            <label>Horario</label>
+            <p>{{getOpeningHours()}}</p>
+          </article>
+        </section>
+      </main>
+    </article>
+
+    <aside class="social">
+      <ul class="social-list">
+        <li *ngFor="let social of getSocial()"
+            class="social-list-element">
+          <a [href]="social['url']" target="_blank"><i class=" fa fa-{{social['name']}}"></i></a>
+        </li>
+      </ul>
+    </aside>
+  </section>
+  <footer class="footer-card-component"></footer>
+</article>
